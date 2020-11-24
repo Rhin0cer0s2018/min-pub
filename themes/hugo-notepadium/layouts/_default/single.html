@@ -1,0 +1,35 @@
+{{- define "main" -}}
+{{- $justify := false -}}
+{{- if eq .Params.justify true -}} {{- $justify = true -}} {{- end -}}
+<div class="article-container overflow-hidden lg:shadow-lg rounded-lg mb-4">
+    {{- partial "article-header.html" . -}}
+    <div class="article markdown-body xl:w-3/4 text-sm leading-loose xl:inline-block my-4 animate__animated animate__bounceInUp"
+        {{- if $justify -}}style="text-align: justify;" {{- end -}}>
+        {{- with .Params.cover -}}<p><img class="lazy-load cover" src="/images/default.png"
+                data-src="{{- . | safeURL -}}" alt></p>{{- end -}}
+        {{- .Content -}}
+    </div>
+    {{- partial "sidebar.html" . -}}
+</div>
+<div class="adsense" style=text-align:center target="about_blank">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- article labels上方 -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8746275014476192" data-ad-slot="6740283697"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+{{- partial "article-labels.html" . -}}
+{{- partial "article-license.html" . -}}
+{{- partial "article-author.html" . -}}
+{{- partial "explan.html" . -}}
+{{- partial "article-bottom-navigation.html" . -}}
+{{- partial "related.html" . -}}
+{{- if eq .Type "page" -}}
+{{ else }}
+{{- partial "article-comments.html" . -}}
+
+{{- end -}}
+
+{{- end -}}

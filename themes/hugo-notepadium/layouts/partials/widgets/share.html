@@ -1,0 +1,47 @@
+<div class="widget">
+  
+  <h4 class="widget-title">Share</h4>
+<ul class="list-unstyled text-uppercase">
+  <li class="ml-1 mr-1">
+    <a target="_blank" href="https://twitter.com/intent/tweet?text={{ .Title }} - {{ .Site.Title }}&url={{ .Permalink }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+  <i class="iconfont icon-twitter"></i>
+  </a>
+  </li>
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="https://facebook.com/sharer.php?u={{ .Permalink }}&pics={{.Params.image}}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+  <i class="iconfont icon-facebook1"></i>
+  </a>
+  </li>
+<!--        <li class="ml-1 mr-1">
+  <a target="_blank" href="https://plus.google.com/share?url={{ .Permalink }}" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+  <i class="fab fa-google"></i>
+  </a>
+  </li>   -->
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="https://www.xing.com/spi/shares/new?url={{ .Permalink }}&pics={{.Params.image}}" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+  <i class="iconfont icon-xing"></i>
+  </a>
+  </li>
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="http://service.weibo.com/share/share.php?url={{ .Permalink }}&title={{ .Title }} - {{ .Site.Title }}&pic={{.Params.image}};" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+  <i class="iconfont icon-weibo"></i>
+  </a>
+  </li>
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{ .Permalink }}&summary={{ .Summary }}&title={{ .Title }} - {{ .Site.Title }}&site={{ .Site.Title }}&pics={{.Params.image}};">
+  <i class="iconfont icon-qzone"></i>
+  </a>
+  </li>
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url={{ .Permalink }}&title={{ .Title }} - {{ .Site.Title }}&summary={{ .Summary }}&pics={{.Params.image}}&flash=&site={{ .Site.Title }}&desc=';">
+  <i class="iconfont icon-qq"></i>
+  </a>
+  </li>
+  <li class="ml-1 mr-1">
+  <a target="_blank" href="https://www.douban.com/share/service?name={{ .Title }} - {{ .Site.Title }}&href={{ .Permalink }}&url={{ .Permalink }};" >
+  <i class="iconfont icon-douban1"></i>
+  </a>
+  </li>
+
+</ul>
+</div>

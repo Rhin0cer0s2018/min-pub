@@ -1,0 +1,16 @@
+<div id="gitalk-container"></div>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1.5.2/dist/gitalk.js"></script>
+<script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+{{/*  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Rhinocros/minorpatch-static@1.2/gitalk.css" />  */}}
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: "b7ac4cc74e49c5946d50",
+    clientSecret: "57a0de37b17a0e21c54b4fdc6ad2619289d41b09",
+    repo: "minorpatch-gitalk",
+    owner: "Rhinocros",
+    admin: ["Rhinocros"],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+  });
+  gitalk.render("gitalk-container");
+</script>

@@ -1,0 +1,22 @@
+{{- $nav := . -}}
+{{- if or $nav.showCategories $nav.showTags $nav.custom -}}
+<nav class="nav flex">
+    <!--    {{- if $nav.showCategories -}}
+        <a class="nav item" href="{{- `/categories/` | relLangURL -}}">{{- T "Categories" -}}</a>
+    {{- end -}}
+    {{- if $nav.showTags -}}
+        <a class="nav item" href="{{- `/tags/` | relLangURL -}}">{{- T "Tags" -}}</a>
+    {{- end -}}
+    -->
+    {{- range $nav.custom -}}
+    {{- $url := .url | safeURL -}}
+    {{- if strings.HasPrefix $url "/" -}}{{- $url = $url | relLangURL -}}{{- end -}}
+    <a class="nav item w-1/2 sm:w-full lg:inline-block lg:text-sm text-gray-700 my-auto" href="{{- $url -}}"
+        {{- if strings.HasPrefix $url "http" -}}target="_blank" {{- end -}}>{{- .title -}}</a>
+    {{- end -}}
+
+    {{- partial "search.html" . -}}
+</nav>
+
+
+{{- end -}}

@@ -1,0 +1,29 @@
+{{- $related := (where site.RegularPages "Type" "in" site.Params.mainSections)| first 12 -}}
+{{- with $related -}}
+<div class="card_related my-16">
+	<div class="container-xl-related">
+		<div class="related_content text-center animate__animated animate__fadeInUpBig">
+			<p class="tit text-xl my-16">Related Apps</p>
+			<ul class="post_list flex grid lg:grid-cols-6 gap-4 mt-6 sm:grid-cols-1 md:grid-cols-3" id="lazy-load">
+				{{- range . -}}
+				<li class="related-li h-auto py-8 px-4 overflow-hidden shadow-lg rounded-lg transition duration-300 
+    ease-in-out transform hover:-translate-y-2 lazy-load">
+					<div class="related-main">
+						<div class="featured-image-related">
+							<a href="{{ .RelPermalink }}">
+								<img src="/images/default.png" data-src="{{ .Params.Image | absURL }}"
+									class="featured-image-related m-auto mb-3 w-24 lazy-load"
+									alt="{{ .Title | markdownify }}">
+							</a>
+							<div class="card-body-related text-sm mt-6">
+								<a href="{{ .RelPermalink }}">{{- .Title -}}</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				{{- end -}}
+			</ul>
+			{{- end -}}
+		</div>
+	</div>
+</div>

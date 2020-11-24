@@ -1,0 +1,108 @@
+baseURL = "https://www.minorpatch.com"
+title = "MinorPatch.com | MacApps Free Download"
+theme = "hugo-notepadium"
+copyright = "©2017-2020 MinorPatch.com."
+paginate = 30
+languageCode = "en" # for the RSS generation
+defaultContentLanguage = "en"
+hasCJKLanguage = false
+enableEmoji = true
+enableRobotsTXT = true
+disableHugoGeneratorInject = true
+publishDir = "public"
+googleAnalytics = "UA-9711986-10"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+# Enable Disqus
+#disqusShortname = "XXX"
+# Google Analytics
+[comment.gitalk]
+owner = "Rhinocros" #必须. GitHub repository 所有者，可以是个人或者组织。
+admin = "Rhinocros" #必须. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
+repo = "minorpatch-gitalk" #必须. GitHub repository.
+ClientID = "b7ac4cc74e49c5946d50" #必须. GitHub Application Client ID.
+ClientSecret = "57a0de37b17a0e21c54b4fdc6ad2619289d41b09" #必须. GitHub Application Client Secret.
+
+[outputFormats.SearchIndex] # use for search. recommend not to modify
+mediaType = "application/json"
+baseName = "searchindex"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+home = ["HTML", "RSS", "SearchIndex"] # recommend not to modify
+
+[sitemap]
+changefreq = "daily"
+priority = 1
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true # enable raw HTML in Markdown
+
+[params]
+sitename = "MinorPatch.com | MacApps Free Download"
+style = "dark" # default: auto. light: light theme, dark: dark theme, auto: based on system.
+dateFormat = "2006-01-02" # if unset, default is "2006-01-02"
+readingTime = true # show reading time after article date
+logo = "/LOGO-800.png"
+slogan = ""
+#license = "<a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/><img alt=Creative Commons License style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png /></a><br />This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>."
+fullRss = true # Puts entire HTML post into rss 'description' tag. If unset, default is false.
+description = "Minorpatch.com | MacApps Free Download"
+keywords = [
+    "minorpatch.com",
+    "minorpatch",
+    "Macapps",
+    "Macapp",
+    "free download",
+    "crack"
+]
+
+[params.author]
+name = "Rhin0cer0s"
+
+[params.assets]
+css = [
+    "css/custum.css",
+    "css/swiper/normalize.min.css",
+    "css/swiper/style.css",
+    "css/swiper/swiper.min.css",
+    "css/gitalk.css"
+]
+js = ["js/lazysizes.min.js"]
+
+[params.comments]
+enable = true # En/Disable comments globally, default: false. You can always enable comments on per page.
+
+[params.math]
+enable = false # load math globally, default: false. You can always enable math on per page.
+use = "katex" # builtin: "katex", "mathjax".  default: "katex"
+
+[params.syntax]
+use = "none" # builtin: "prismjs", "hljs". "none" means Chroma
+theme = "xcode"
+darkTheme = "xcode-dark"
+
+[params.nav]
+showCategories = true # /categories/
+showTags = true # /tags/
+
+[[params.nav.custom]]
+title = "Home"
+url = "/"
+
+[[params.nav.custom]]
+title = "MacApps"
+url = "/macapps/"
+
+[[params.nav.custom]]
+title = "Skills"
+url = "/skills/"

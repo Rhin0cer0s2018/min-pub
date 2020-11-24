@@ -1,0 +1,58 @@
+{{- $paginator := . -}}
+{{- if gt $paginator.TotalPages 0 -}}
+{{- $dateFormat := site.Params.dateFormat -}}
+{{- if not $dateFormat -}}{{- $dateFormat = "2006-01-02" -}}{{- end -}}
+
+<ul class="grid xl:grid-cols-6 gap-4 flex sm:grid-cols-1 md:grid-cols-3 p-4" id="lazy-load">
+    {{- range $paginator.Pages -}}
+    <div class="app-posts lazy-load overflow-hidden shadow-lg w-full p-4 pt-8 rounded-lg transition duration-300 
+    ease-in-out transform">
+        <div class="newposts-img">
+            {{- if eq (.PublishDate.Format "Jan 02, 2006") (now.Format "Jan 02, 2006") -}}
+            <i class="iconfont iconqitianicontongyi- text-red-600 text-4xl"></i>
+            {{- end -}}
+        </div>
+        {{ if eq .Type "macapps" }}
+        <div class="index-featured-img w-3/5 mx-auto">
+            {{else}}
+            <div class="skills-featured-img w-full">
+                {{end}}
+                <a href="{{ .Permalink }}" target="_blank">
+                    <img class="lazy-load m-auto" src="{{ .Params.Image | absURL }}"
+                        alt="{{ .Title | markdownify }}"></a>
+            </div>
+            <div class="px-2 py-2 mt-4">
+                {{- if ge (strings.RuneCount .Title) 46 -}}
+                <a class="text-sm" href="{{ .Permalink }}" target="_blank">
+                    {{- substr  .Title 0 46 -}}...
+                </a>
+                {{- else -}}
+                <a class="text-sm" href="{{ .Permalink }}" target="_blank">
+                    {{- .Title | safeHTML -}}
+                </a>
+                {{- end -}}
+            </div>
+            {{- if .Date -}}
+            <div class="px-2 text-xs font-sans"><i class="iconfont iconrili1"></i>&nbsp;{{- .Date.Format $dateFormat -}}
+            </div>
+            {{- end -}}
+            <div class="p-2 mb-4">
+                {{- if or .Params.categories .Params.tags -}}
+                <span class="inline-block  text-sm mr-2 flex">
+                    {{- range .Params.categories -}}
+                    {{- $url := print "/categories/" (. | urlize) "/" -}}
+                    <a class="category" href="{{- $url | relLangURL -}}">{{- . -}}</a>
+                    {{- end -}}</span>
+                <!--      {{- range .Params.tags -}}
+                                            {{- $url := print "/tags/" (. | urlize) "/" -}}
+                                            <a class="tag" href="{{- $url | relLangURL -}}">{{- . -}}</a>
+                                        {{- end -}}   -->
+                </p>
+                {{- end -}}
+
+            </div>
+        </div>
+        {{- end -}}
+    </div>
+</ul>
+{{- end -}}

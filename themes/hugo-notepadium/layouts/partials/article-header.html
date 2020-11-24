@@ -1,0 +1,56 @@
+<section class="article header">
+    {{- if eq .Section "macapps" -}}
+    <div class="featured-img  mx-auto w-48 mb-4 animate__animated animate__backInDown">
+        {{- else -}}
+        <div class="skills-featured-img mx-auto mb-4 animate__animated animate__backInDown">
+            {{- end -}}
+            <img src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}">
+        </div>
+        <h1 class="article title">{{- .Title | safeHTML -}}</h1>
+        {{- $dateFormat := site.Params.dateFormat -}}
+        {{- if not $dateFormat -}}{{- $dateFormat = "2006-01-02" -}}{{- end -}}
+        {{- $lastmodFormat := "" -}}
+        {{- $lastmod := .Lastmod -}}
+        {{- if $lastmod -}}
+        {{- $lastmodFormat = $lastmod.Format $dateFormat -}}
+        {{- end -}}
+        {{- if .Date -}}
+        {{- $dateFormat := .Date.Format $dateFormat -}}
+        <p class="article date mt-4 text-xs text-gray-600"><i class="iconfont iconrili1"></i>&nbsp;{{- $dateFormat -}}
+            {{- if and ($lastmod.After .Date) (ne $lastmodFormat $dateFormat) -}}
+            <span class="lastmod">{{- printf (T "edited") $lastmodFormat -}}</span>
+            {{- end -}}
+            {{/*  {{- if or (eq .Params.readingTime true) (and (not (eq .Params.readingTime false)) (eq site.Params.readingTime true)) -}}
+
+            <span class="reading-time"> <i class="iconfont icon-shijian"></i>{{ T "readingTime" .ReadingTime }}</span>
+            {{- end -}} */}}
+            &nbsp;&nbsp;
+            {{ if isset .Params "compatibility" }}
+            <span class="compatibility">
+
+                {{ if eq .Params.compatibility "big-sur" }}
+                <i class="iconfont iconduigou text-green-600 font-bold">Big Sur</i>
+                &nbsp;
+                <i class="iconfont iconstop text-red-600 font-bold">Apple Silicon</i>
+                {{ else if eq .Params.compatibility "b&s" }}
+                <i class="iconfont iconduigou text-green-600 font-bold">Big Sur</i>
+                &nbsp;
+                <i class="iconfont iconduigou text-green-600 font-bold">Apple Silicon</i>
+                {{ end }}
+            </span>
+
+            {{ else }}
+            {{ end }}
+            {{- if .IsTranslated -}}
+            <span class="langs">
+                {{- range .Translations -}}
+                <span class="lang"><a href="{{- .RelPermalink -}}">{{- .Lang -}}</a></span>
+                {{- end -}}
+            </span>
+            {{- end -}}
+        </p>
+        {{- end -}}
+        <!-- ShareThis BEGIN -->
+        <div class="sharethis-inline-share-buttons mt-4"></div>
+        <!-- ShareThis END -->
+</section>

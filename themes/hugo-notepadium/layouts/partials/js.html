@@ -1,0 +1,108 @@
+<!--
+    for user-side override
+-->
+<script>
+  (function (window) {
+    var INSIGHT_CONFIG = {
+      TRANSLATION: {
+        POSTS: '{{ T "insight_posts"}}',
+        PAGES: '{{ T "insight_pages"}}',
+        CATEGORIES: '{{ T "insight_categories"}}',
+        TAGS: '{{ T "insight_tags"}}',
+        UNTITLED: '{{ T "insight_untitled"}}',
+      },
+      ROOT_URL: "{{ .Site.BaseURL }}",
+      CONTENT_URL: '{{ print .Site.BaseURL "/searchindex.json" | safeURL }} ',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+  })(window);
+</script>
+<script src="//cdn.jsdelivr.net/gh/Rhinocros/minorpatch-static@1.2/js/insight.js"></script>
+<script src="//cdn.jsdelivr.net/gh/Rhinocros/minorpatch-static@1.2/js/application.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.1/Swiper/js/swiper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.1/Swiper/js/index.js"></script>
+
+<!--Lazyload-->
+<script type="text/javascript" charset="utf-8">
+  (function lazyLoad() {
+    const imageToLazy = document.querySelectorAll('img[data-src]');
+    const loadImage = function (image) {
+      image.setAttribute('src', image.getAttribute('data-src'));
+      image.addEventListener('load', function () {
+        image.removeAttribute("data-src");
+      })
+    }
+
+
+    const intersectionObserver = new IntersectionObserver(function (items, observer) {
+      items.forEach(function (item) {
+        if (item.isIntersecting) {
+          loadImage(item.target);
+          observer.unobserve(item.target);
+        }
+      });
+    });
+
+    imageToLazy.forEach(function (image) {
+      intersectionObserver.observe(image);
+    })
+  })()
+</script>
+
+<!-- Google Adsense -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2203119901834730",
+      enable_page_level_ads: true,
+    });
+</script>
+<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9711986-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "UA-9711986-10");
+</script>
+
+<script>
+  (function () {
+    var canonicalURL, curProtocol;
+    //Get the <link> tag
+    var x = document.getElementsByTagName("link");
+    //Find the last canonical URL
+    if (x.length > 0) {
+      for (i = 0; i < x.length; i++) {
+        if (x[i].rel.toLowerCase() == 'canonical' && x[i].href) {
+          canonicalURL = x[i].href;
+        }
+      }
+    }
+    //Get protocol
+    if (!canonicalURL) {
+      curProtocol = window.location.protocol.split(':')[0];
+    }
+    else {
+      curProtocol = canonicalURL.split(':')[0];
+    }
+    //Get current URL if the canonical URL does not exist
+    if (!canonicalURL) canonicalURL = window.location.href;
+    //Assign script content. Replace current URL with the canonical URL
+    !function () { var e = /([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi, r = {{ .Permalink }}, t = document.referrer; if (!e.test(r)) { var n = (String(curProtocol).toLowerCase() === 'https') ? "https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif" : "//api.share.baidu.com/s.gif"; t ? (n += "?r=" + encodeURIComponent(document.referrer), r && (n += "&l=" + r)) : r && (n += "?l=" + r); var i = new Image; i.src = n }
+  }(window);}) ();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8746275014476192",
+    enable_page_level_ads: true,
+  });
+</script>
+<div style="display: none;">
+  <script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1277912333&web_id=1277912333"></script>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-stiky my-16">
+
+  <div class="grid xl:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1  animate__animated animate__jackInTheBox"
+    id="lazy-load">
+    {{- range where .Site.Pages ".Params.stikypost" "stiky" -}}
+    <div class="stiky-post flex text-left rounded-lg px-4 shadow-lg duration-300 lazy-load">
+      <a class="align-middle mr-2 my-auto" href="{{ .Permalink }}">
+        <img class="lazy-load" style="width: 100px;" src="/images/default.png" data-src="{{ .Params.Image | absURL }}"
+          alt="{{ .Title | markdownify }}"></a>
+      <div class="my-auto py-6 px-2 align-middle justify-between leading-normal">
+        <div class="content-center">
+          <div>
+            <a class="hover:text-red-600 text-sm mb-2" href="{{ .Permalink }}">
+              {{- .Title | markdownify -}}
+            </a></div>
+          <span class="text-xs"><i class="iconfont iconrili1"></i>&nbsp;{{- .PublishDate.Format "2006-01-02" -}}</span>
+          <span class="inline-block  text-sm mr-2 flex">
+            {{- range .Params.categories -}}
+            {{- $url := print "/categories/" (. | urlize) "/" -}}
+            <a class="category text-xs" href="{{- $url | relLangURL -}}">{{- . -}}</a>
+            {{- end -}}</span>
+
+
+        </div>
+
+      </div>
+
+    </div>
+    {{- end -}}
+  </div>
+</div>

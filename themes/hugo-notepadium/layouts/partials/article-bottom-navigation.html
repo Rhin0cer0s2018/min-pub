@@ -1,0 +1,32 @@
+{{- if and (not (eq .Params.single true)) (or .PrevInSection .NextInSection) -}}
+<section class="article navigation grid grid-cols-2 gap-4 mb-6">
+  <div class="nextpage float-left col-start-1 w-full overflow-hidden shadow-xl text-right p-8 rounded-lg transition duration-300 
+    ease-in-out list-none animate__animated animate__fadeInLeftBig">
+    <div>
+      {{- with .NextInSection -}}
+      <li>
+        <a href="{{.Permalink}}">
+          {{with .Params.image}}
+          <img class="nextpage-image" src="{{ . | relURL }}" alt="thumbnail for this post">
+          {{end}} </li></a>
+      <a href="{{.Permalink}}">
+        <span class="float-left"><i class="iconfont iconzuojiantou"></i>{{- .Title | safeHTML -}}</span></a>
+      {{- end -}}
+    </div>
+  </div>
+  <div class="prevpage float-right w-full overflow-hidden shadow-xl p-8 rounded-lg transition duration-300 
+    ease-in-out list-none animate__animated animate__fadeInRightBig">
+    <div class="float-right">
+      {{- with .PrevInSection -}}
+      <li class="">
+        <a href="{{.Permalink}}">
+          {{with .Params.image}}
+          <img class="prevpage-image float-right" src="{{ . | relURL }}" alt="thumbnail for this post">
+          {{end}} </li></a>
+      <span class="float-right"> <a href="{{.Permalink}}">{{- .Title | safeHTML -}}<i
+            class="iconfont iconyoujiantou"></i></span></a>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}

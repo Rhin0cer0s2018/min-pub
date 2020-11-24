@@ -1,0 +1,21 @@
+<div class="widget">
+    <h4 class="widget-title">Lastest Apps</h4>
+    <div class="widget-body w-3/4 m-auto">
+        <ul class="recent-post-list list-unstyled">
+            {{- range first 5 ( where .Site.RegularPages "Type" "macapps" ) -}}
+            <li class="my-6">
+                <div class="featured-img">
+                    <a href="{{ .Permalink }}" target="_blank">
+                        <img src="{{ .Params.Image | absURL }}" class="m-auto w-32"
+                            alt="{{ .Title | markdownify }}"></a>
+                </div>
+                <div class="item-inner my-2">
+                    <p class="item-title">
+                        <a href="{{- .Permalink }}" class="title" target="_blank">{{- .Title -}}</a>
+                    </p>
+                </div>
+            </li>
+            {{- end -}}
+        </ul>
+    </div>
+</div>

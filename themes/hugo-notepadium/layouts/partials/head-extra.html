@@ -1,0 +1,51 @@
+<!--
+    for user-side override
+-->
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1040180_ady3ztoyd3h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1340336_ewoqxvvd27h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1340336_e59qmh53xb6.css">
+<script type="text/javascript" src="//at.alicdn.com/t/font_1040180_ady3ztoyd3h.js"></script>
+<script type="text/javascript" src="//at.alicdn.com/t/font_1340336_ewoqxvvd27h.js"></script>
+<script type="text/javascript" src="//at.alicdn.com/t/font_1340336_e59qmh53xb6.js"></script>
+<script type="text/javascript"
+    src="//cdn.jsdelivr.net/gh/Rhinocros/minorpatch-static@latest/adsense/adsenseloader.js"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Rhinocros/minorpatch-static@latest/adsense/jquery.adsenseloader.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src='//cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.0/adsense/adsenseloader.js'></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script type="text/javascript"
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=5e9279e9f4621e00127d18f7&product=inline-share-buttons"
+    async="async"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="/tailwind.min.css">
+<!--Lazyload-->
+<script>
+    // Import stylesheets
+    (function lazyLoad() {
+        const imageToLazy = document.querySelectorAll('img[data-src]');
+        const loadImage = function (image) {
+            image.setAttribute('src', image.getAttribute('data-src'));
+            image.addEventListener('load', function () {
+                image.removeAttribute("data-src");
+            })
+        }
+
+        imageToLazy.forEach(function (image) {
+            loadImage(image);
+        })
+    })()
+
+</script>
+<!--
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.2/Swiper/css/normalize.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.2/Swiper/css/swiper.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Rhinocros/digit77-static-cdn@1.2/Swiper/css/style.css">
+-->

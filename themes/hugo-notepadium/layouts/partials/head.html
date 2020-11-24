@@ -1,0 +1,139 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<meta name="referrer" content="no-referrer" />
+<meta name="renderer" content="webkit">
+<link rel="shortcut icon" href='/fav.png'>
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="description"
+  content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Params.description }}{{ end }}">
+<title>{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}
+</title>
+
+{{ with $.Params.keywords }}
+<meta name="keywords" content="{{ delimit $.Params.keywords "," }}">
+{{ end }}
+{{- template "_internal/opengraph.html" . -}}
+{{- template "_internal/google_news.html" . -}}
+{{- template "_internal/schema.html" . -}}
+{{- template "_internal/twitter_cards.html" . -}}
+{{ template "_internal/google_analytics.html" . }}
+{{/*  Title Tags  */}}
+<title itemprop="name">{{ .Title }} | {{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+{{/*  Description Tags  */}}
+<meta name="description" content="{{ .Params.description }}" />
+<meta itemprop="description" content="{{ .Params.description }}" />
+<meta property="og:description" content="{{ .Params.description }}" />
+<meta name="twitter:description" content="{{ .Params.description }}" />
+{{/*  Link Tags  */}}
+<base href="{{ .Permalink }}" />
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+<meta name="url" content="{{ .Permalink }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{/*  Image Tags  */}}
+{{ with .Params.image }}
+<meta itemprop="image" content="{{ . | absURL }}" />
+<meta property="og:image" content="{{ . | absURL }}" />
+<meta name="twitter:image" content="{{ . | absURL }}" />
+<meta name="twitter:image:src" content="{{ . | absURL }}" />
+{{ else }}
+<meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta name="twitter:image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta name="twitter:image:src" content="{{ .Site.Params.ogimage | absURL }}" />
+{{ end }}
+{{/*  Date Tags  */}}
+<meta property="og:updated_time" content={{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+{{/*  Sitemap & RSS Feed Tags  */}}
+<link rel="sitemap" type="application/xml" title="Sitemap" href='{{ "sitemap.xml" | absURL }}' />
+
+{{ with .OutputFormats.Get "RSS" }}
+<link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+<link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+{{ end }}
+{{/*  Tags for Article Pages  */}}
+<!-- To make sure this renders only in the article page, we check the section -->
+{{ if eq .Section "blog" }}
+
+<!-- Pagination meta tags for list pages only -->
+{{ $paginator := .Paginate (where .Pages "Section" "macapps") }}
+{{ if $paginator }}
+<link rel="first" href="{{ $paginator.First.URL }}" />
+<link rel="last" href="{{ $paginator.Last.URL }}" />
+{{ if $paginator.HasPrev }}
+<link rel="prev" href="{{ $paginator.Prev.URL }}" />
+{{end }}
+{{ if $paginator.HasNext }}
+<link rel="next" href="{{ $paginator.Next.URL }}" />
+{{end }}
+{{end }}
+
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="{{ .Site.Params.facebook }}" />
+<meta property="og:article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+<meta property="article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+
+{{ with.Params.author }}
+<meta property="og:article:author" content="{{humanize . }}" />
+<meta property="article:author" content="{{humanize . }}" />
+<meta name="author" content="{{humanize . }}" />
+{{ end }}
+
+{{ with.Params.category }}
+<meta name="news_keywords" content="{{ index . 0 }}" />
+<meta property="article:section" content="{{ index . 0 }}" />
+{{ end }}
+
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": {{ .Title }},
+    "author": {
+      "@type": "Person",
+      "name": "{{ .Site.Params.github }}"
+    },
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "description": {{ .Description }},
+    "wordCount": {{ .WordCount }},
+    "mainEntityOfPage": "True",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "image": {
+      "@type": "imageObject",
+      "url": "{{ with .Params.image }}{{ .Permalink }}{{ end }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ .Site.Title }}",
+      "logo": {
+        "@type": "imageObject",
+        "url": "https://www.example.com/images/brand/favicon.png"
+      }
+    }
+  }
+</script>
+{{ end }}
+
+{{- define "title" -}}
+{{- $title := .Title -}}
+{{- if and (ne $title "") (ne $title site.Title) -}}
+<title>{{- $title | safeHTML -}} &nbsp;&ndash;&nbsp; {{- site.Title | safeHTML -}}</title>
+{{- else -}}
+{{- $slogan := site.Params.slogan -}}
+<title>{{- site.Title | safeHTML -}}{{- if and (isset site.Params "slogan") (ne $slogan "") -}} &nbsp;&ndash;&nbsp;
+  {{- $slogan | safeHTML -}}{{- end -}}</title>
+{{- end -}}
+{{- end -}}
+
+{{- block "title" . -}}{{- end -}}
+{{- partial "style.html" . -}}
+{{- partial "rss-feed.html" . -}}
+{{- partial "head-extra.html" . -}}

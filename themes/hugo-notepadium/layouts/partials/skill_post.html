@@ -1,0 +1,40 @@
+{{- $dateFormat := site.Params.dateFormat -}}
+{{- $paginator := 6 -}}
+<div
+    class="skills-entry-title mb-6 grid xl:grid-cols-2 gap-4 sm:grid-cols-1 sm:w-full animate__animated animate__bounceIn">
+
+    {{- range first 6 ( where .Site.RegularPages "Section" "skills" ) -}}
+
+    <div class="skills lg:flex text-left rounded-lg items-center xl:px-4 sm:px-1 shadow-lg transform duration-300 ease-in-out"
+        id="lazy-load">
+        {{/*    {{- if isset .Params "image" -}} */}}
+        <a class="w-64" href="{{ .Permalink }}" target="_blank">
+            <img class="lazy-load h-32 w-full m-auto rounded-lg" src="/images/default.png"
+                data-src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}">
+        </a>
+        {{/*    {{- else -}}
+        <a class="w-64" href="{{ .Permalink }}" target="_blank">
+            <img class="lazy-load h-32 w-full m-auto rounded-lg" src="/images/default.png"
+                data-src="{{ .Params.Image | absURL }}" alt="{{ .Title | markdownify }}">
+        </a>
+        {{- end -}} */}}
+        <div class="py-12 px-4 items-center justify-between leading-normal">
+            <a class="lg:text-sm sm:text-base font-medium" href="{{ .Permalink }}" target="_blank">
+                {{ .Title }}
+                <!--  {{- if ge .WordCount 40 -}}
+                <div class="skills-description">{{- substr  .Description 0 40 -}}...</div>
+                {{- end -}} -->
+            </a>
+            {{- if .Date -}}
+            <p class="text-xs font-sans"><i class="iconfont icon-rili"></i>&nbsp;{{- .Date.Format $dateFormat -}}
+
+
+            </p>
+            {{- end -}}
+            {{- partial "note-labels.html" . -}}
+        </div>
+
+    </div>
+
+    {{- end -}}
+</div>

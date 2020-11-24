@@ -1,0 +1,67 @@
+{{- define "main" -}}
+<div class="blog-slider">
+
+  <div class="blog-slider__wrp swiper-wrapper">
+    {{- range first 6 (where .Site.RegularPages "Section" "macapps") -}}
+    <div class="blog-slider__item swiper-slide">
+
+      <div class="blog-slider__img">
+        <img src="{{ .Params.Image | absURL }}" alt="MinorPatch.com Index Slider Image">
+      </div>
+      <div class="blog-slider__content">
+        <span class="blog-slider__code"><i
+            class="iconfont iconrili1"></i>&nbsp;{{- .PublishDate.Format "2006-01-02" -}}</span>
+        <div class="blog-slider__title">{{- .Title | markdownify -}}</div>
+        <div class="blog-slider__text">{{- .Description -}}</div>
+        <a href="{{ .Permalink }}" class="blog-slider__button">Details</a>
+      </div>
+
+    </div>
+    <div class="blog-slider__pagination"></div>{{ end }}
+  </div>
+</div>
+<div class="adsense">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- minorpatch 首页幻灯下 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8746275014476192" data-ad-slot="6934288213"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+{{- partial "stiky.html" . -}}
+<div class="adsense">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- minorpatch-article labels上方 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8746275014476192" data-ad-slot="6740283697"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="section-title no-underline text-2xl flex border-b-4 border-red-600 mb-4 pl-4 text-current"><a
+    href="/macapps/"><span>Lastest Apps</span></a></div>
+{{- partial "homepage-body.html" . -}}
+{{- $paginator := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) -}}
+
+{{- partial "note-list.html" $paginator -}}
+<div class="adsense">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- minorpatch-article labels上方 -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8746275014476192" data-ad-slot="6740283697"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="section-title flex  h-12 relative content-end mt-6 mb-4 border-b-4 border-red-600">
+  <a class="align-middle" href='/skills/' target="about_blank"> <svg class="menuIcon alSvgIcon w-40 h-12 "
+      aria-hidden="true">
+      <use xlink:href="#icon-Skillshare"></use>
+    </svg></a></div>
+{{- partial "skill_post.html" . -}}
+<!-- {{- partial "pagination.html" $paginator -}} -->
+
+{{- end -}}
